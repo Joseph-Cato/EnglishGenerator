@@ -1,0 +1,25 @@
+services:
+  english-generator-api:
+    image: english-generator
+    container_name: english-generator-api
+    build:
+      context: .
+      dockerfile: src/EnglishGenerator.Presentation/Dockerfile
+    ports:
+      - "5015:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Docker"
+      AppConfig__Environment: "Local"
+      AppConfig__Version: "1.0.1"
+      AWS_ACCESS_KEY_ID: 0
+      AWS_SECRET_ACCESS_KEY: 0
+      AWS_REGION: eu-west-1
+
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1000M
+        reservations:
+          cpus: '0.3'
+          memory: 500M
