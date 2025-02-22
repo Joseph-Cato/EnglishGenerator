@@ -1,4 +1,3 @@
-
 namespace EnglishGenerator.Core.ResultTypes;
 
 public record Result<T, E>
@@ -33,5 +32,4 @@ public record Result<T, E>
         _error = error;
         _success = success;
     }
-
 }
