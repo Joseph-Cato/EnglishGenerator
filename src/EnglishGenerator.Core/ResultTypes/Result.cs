@@ -1,8 +1,7 @@
-using System.Diagnostics.Contracts;
 
 namespace EnglishGenerator.Core.ResultTypes;
 
-public record class Result<T, E>
+public record Result<T, E>
 {
     private readonly bool _success;
     private readonly T _value;
