@@ -1,0 +1,23 @@
+name: pull_request
+on:
+  pull_request
+
+jobs:
+  dotnet-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: andreasabel/fix-whitespace-action@v1
+        with:
+          version: 0.1
+          configfile: fix-whitespace.yaml
+          fix: false
+          verbose: true
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Format
+        run: dotnet format --verify-no-changes --verbosity diagnostic
