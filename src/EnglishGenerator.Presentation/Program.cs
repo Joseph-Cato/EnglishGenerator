@@ -16,3 +16,5 @@ var app = builder.Build();
 
 app.UseFastEndpoints(configAction => configAction.Serializer.Options.Converters.Add(new JsonStringEnumConverter()));
 app.Run();
+
+public partial class Program { }

@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using EnglishGenerator.Core.Enums;
 
 namespace EnglishGenerator.Presentation.WebApi.ApiModels.User;
