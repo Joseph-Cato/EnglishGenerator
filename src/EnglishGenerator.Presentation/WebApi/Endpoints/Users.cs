@@ -21,8 +21,8 @@ public class Users(
         var result = await userService.CreateUserAsync(createUserDto, ct);
 
         await result.Match(
-            success: x => SendAsync(new CreateUserResponse { UserId = x.UserId, Errors = null }, (int)HttpStatusCode.Created, ct),
-            failure: x => SendAsync(new CreateUserResponse { UserId = null, Errors = [x] }, (int)HttpStatusCode.Conflict, ct)
+            success: x => SendAsync(new CreateUserResponse { UserId = x.UserId, Errors = null }, (int) HttpStatusCode.Created, ct),
+            failure: x => SendAsync(new CreateUserResponse { UserId = null, Errors = [x] }, (int) HttpStatusCode.Conflict, ct)
         );
     }
 }

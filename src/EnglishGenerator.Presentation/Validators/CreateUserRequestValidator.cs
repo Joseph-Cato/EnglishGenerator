@@ -1,5 +1,5 @@
-using FluentValidation;
 using EnglishGenerator.Presentation.WebApi.ApiModels.User;
+using FluentValidation;
 
 namespace EnglishGenerator.Presentation.Validators;
 
