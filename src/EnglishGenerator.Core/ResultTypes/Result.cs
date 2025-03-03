@@ -1,32 +1,32 @@
 namespace EnglishGenerator.Core.ResultTypes;
 
-public record Result<T, E>
+public record Result<TT, TE>
 {
     private readonly bool _success;
-    private readonly T _value;
-    private readonly E _error;
+    private readonly TT _value;
+    private readonly TE _error;
 
     public bool IsOk => _success;
 
-    public static implicit operator Result<T, E>(T value) => Ok(value);
-    public static implicit operator Result<T, E>(E error) => Fail(error);
+    public static implicit operator Result<TT, TE>(TT value) => Ok(value);
+    public static implicit operator Result<TT, TE>(TE error) => Fail(error);
 
-    public static Result<T, E> Ok(T value)
+    public static Result<TT, TE> Ok(TT value)
     {
-        return new(value, default, true);
+        return new(value, default!, true);
     }
 
-    public static Result<T, E> Fail(E error)
+    public static Result<TT, TE> Fail(TE error)
     {
-        return new(default, error, false);
+        return new(default!, error, false);
     }
 
-    public R Match<R>(
-        Func<T, R> success,
-        Func<E, R> failure) =>
+    public TR Match<TR>(
+        Func<TT, TR> success,
+        Func<TE, TR> failure) =>
         _success ? success(_value) : failure(_error);
 
-    private Result(T value, E error, bool success)
+    private Result(TT value, TE error, bool success)
     {
         _value = value;
         _error = error;

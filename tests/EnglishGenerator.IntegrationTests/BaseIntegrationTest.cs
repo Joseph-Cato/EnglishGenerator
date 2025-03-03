@@ -20,7 +20,15 @@ public class BaseIntegrationTest : IClassFixture<IntegrationTestWebApplicationFa
 
     public void Dispose()
     {
-        _scope?.Dispose();
-        DbContext?.Dispose();
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    // ReSharper disable once VirtualMemberNeverOverridden.Global
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposing) return;
+        _scope.Dispose();
+        DbContext.Dispose();
     }
 }

@@ -8,17 +8,18 @@ using Testcontainers.PostgreSql;
 
 namespace EnglishGenerator.IntegrationTests;
 
+// ReSharper disable once ClassNeverInstantiated.Global
 public class IntegrationTestWebApplicationFactory :
     WebApplicationFactory<Program>, 
     IAsyncLifetime
 {
-    protected readonly PostgreSqlContainer _postgreSqlContainer = new PostgreSqlBuilder()
+    protected readonly PostgreSqlContainer PostgreSqlContainer = new PostgreSqlBuilder()
         .WithImage("postgres:17-alpine")
         .Build();
 
-    public Task InitializeAsync() => _postgreSqlContainer.StartAsync();
+    public Task InitializeAsync() => PostgreSqlContainer.StartAsync();
 
-    public Task DisposeAsync() => _postgreSqlContainer.DisposeAsync().AsTask();
+    public new Task DisposeAsync() => PostgreSqlContainer.DisposeAsync().AsTask();
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
@@ -34,7 +35,7 @@ public class IntegrationTestWebApplicationFactory :
             }
 
             services.AddDbContext<EnglishGeneratorDbContext>(options =>
-                options.UseSqlServer(_postgreSqlContainer.GetConnectionString()));
+                options.UseSqlServer(PostgreSqlContainer.GetConnectionString()));
         });
     }
 }
