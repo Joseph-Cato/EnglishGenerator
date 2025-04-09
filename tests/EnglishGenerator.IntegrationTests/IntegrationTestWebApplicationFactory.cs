@@ -10,7 +10,7 @@ namespace EnglishGenerator.IntegrationTests;
 
 // ReSharper disable once ClassNeverInstantiated.Global
 public class IntegrationTestWebApplicationFactory :
-    WebApplicationFactory<Program>, 
+    WebApplicationFactory<Program>,
     IAsyncLifetime
 {
     protected readonly PostgreSqlContainer PostgreSqlContainer = new PostgreSqlBuilder()
